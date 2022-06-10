@@ -31,7 +31,7 @@ router.get("/:id", async (req, res) => {
             }
             else{
                 let pokeDetails = fullPokemons.filter(e => e.id === id);
-                if(pokeDetails.length > 0) res.status(201).json(pokeDetails);
+                if(pokeDetails.length > 0) res.status(201).json(pokeDetails[0]);
                 else res.status(201).send("Pokemon ID not found")
             }
         }

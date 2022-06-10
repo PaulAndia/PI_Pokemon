@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
 import {Switch, Route} from 'react-router-dom'; 
-import {Landing} from './Components/Landing'
-import {Home} from './Components/Home'
-import {Types} from './Components/Types'
-import {Form} from './Components/Form'
-import {Details} from './Components/Details'
+import {Landing} from './Components/Landing/Landing'
+import {Home} from './Components/Home/Home'
+import {Types} from './Components/Types/Types'
+import {Form} from './Components/Form/Form'
+import {Details} from './Components/Details/Details'
 
 function App() {
   return (
