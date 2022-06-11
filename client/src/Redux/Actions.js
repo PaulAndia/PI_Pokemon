@@ -1,7 +1,10 @@
 import axios from 'axios';
 export const GET_ALL_POKEMONS = "GET_ALL_POKEMONS"; // 40 pokemons
 export const GET_POKEMON_DETAILS = "GET_POKEMON_DETAILS"; 
+export const GET_POKEMON_NAME = "GET_POKEMON_NAME"; 
 export const CLEAR_DETAILS = "CLEAR_DETAILS"; 
+export const GET_TYPES = "GET_TYPES"; 
+
 
 
 export const getAllPokemons = () => {
@@ -38,5 +41,35 @@ export const clearDetails = () => {
     return {
         type: CLEAR_DETAILS,
         payload: []
+    }
+}
+
+export const getPokemonByName = (name) => {
+    return async function(dispatch){
+        try {
+            const responseName = await axios.get(`http://localhost:3001/pokemons?name=${name}`);
+            const pokemonFound = responseName.data; // --> [{}, {}]
+            return dispatch({
+                type: GET_POKEMON_NAME,
+                payload: pokemonFound
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+export const getTypes = () => {
+    return async function(dispatch){
+        try {
+            const resTypes = await axios.get("http://localhost:3001/types");
+            const types = resTypes.data;
+            return dispatch({
+                type: GET_TYPES,
+                payload: types
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 }

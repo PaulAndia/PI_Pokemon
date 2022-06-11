@@ -1,19 +1,28 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { getAllPokemons } from '../../Redux/Actions';
+import { getAllPokemons, getTypes } from '../../Redux/Actions';
 import styles from './Home.module.css'
 import {Link} from 'react-router-dom';
+import { NavBar } from '../NavBar/NavBar';
 
 
 export function Home() {    
     const dispatch = useDispatch();
     const fullPokemons = useSelector(state => state.allPokemons)
-    //console.log(fullPokemons)
+    
+    
     useEffect(() => {
         dispatch(getAllPokemons())
+        //dispatch(getTypes())
     }, [dispatch]);
 
+    function backHome(){
+        return  dispatch(getAllPokemons())
+      }
+
     return (
+        <>
+        <NavBar backHome = {backHome}/>
         <div>
             {fullPokemons.length > 0 ? (
                 <ul className={styles.grid}>
@@ -35,5 +44,6 @@ export function Home() {
                 </ul>
             ): <p>LOADING...</p>}
         </div>
+        </>
     )
 }
