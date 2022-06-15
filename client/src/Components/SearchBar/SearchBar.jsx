@@ -1,6 +1,6 @@
 import { useState} from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { getPokemonByName } from '../../Redux/Actions';
+import { useDispatch } from "react-redux";
+import { clearPokemons, getPokemonByName } from '../../Redux/Actions';
 import { useHistory } from 'react-router-dom';
 
 export function SearchBar() {
@@ -11,13 +11,18 @@ export function SearchBar() {
     const handleSubmit = (e) => {
         e.preventDefault(); // it prevents the page from reloading
        history.push("/pokemons?name=" + searchName);
-        dispatch(getPokemonByName(searchName));
-        setSearchName(""); // It clears the search bar
+       if(searchName.length > 0){
+           dispatch(clearPokemons());
+           dispatch(getPokemonByName(searchName));
+           setSearchName(""); // It clears the search bar
+       }
+       else{
+        alert("please write a name");
+    }
     }
 
     const handleInputChange = (e) => {
-        e.preventDefault();
-        setSearchName(e.target.value);
+        setSearchName(e.target.value);   
     }
 
     return (

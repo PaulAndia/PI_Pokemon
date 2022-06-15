@@ -14,6 +14,11 @@ export function NavBar({backHome}) {
                     <button>TYPES</button>
                 </Link>
             </div>
+            <div>
+                <Link to="/pokemon">
+                    <button> + CREATE POKEMON</button>
+                </Link>
+            </div>
             <SearchBar/>
         </div>
     )

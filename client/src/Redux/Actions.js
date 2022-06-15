@@ -4,8 +4,13 @@ export const GET_POKEMON_DETAILS = "GET_POKEMON_DETAILS";
 export const GET_POKEMON_NAME = "GET_POKEMON_NAME"; 
 export const CLEAR_DETAILS = "CLEAR_DETAILS"; 
 export const GET_TYPES = "GET_TYPES"; 
+export const MSG_ERROR = "MSG_ERROR"; 
+export const CLEAR_POKEMONS = "CLEAR_POKEMONS"; 
 
-
+const msgErr = {
+    type: MSG_ERROR,
+    payload: ["POKEMON NOT FOUND"]
+}
 
 export const getAllPokemons = () => {
     return async function(dispatch){
@@ -47,17 +52,20 @@ export const clearDetails = () => {
 export const getPokemonByName = (name) => {
     return async function(dispatch){
         try {
-            const responseName = await axios.get(`http://localhost:3001/pokemons?name=${name}`);
-            const pokemonFound = responseName.data; // --> [{}, {}]
-            return dispatch({
-                type: GET_POKEMON_NAME,
-                payload: pokemonFound
-            })
+            if(name){
+                const responseName = await axios.get(`http://localhost:3001/pokemons?name=${name}`);
+                const pokemonFound = responseName.data; // --> [{}, {}]
+                    return dispatch({
+                        type: GET_POKEMON_NAME,
+                        payload: pokemonFound
+                    })
+            }
         } catch (error) {
-            console.log(error);
+            return dispatch(msgErr)
+        }
         }
     }
-}
+
 
 export const getTypes = () => {
     return async function(dispatch){
@@ -71,5 +79,13 @@ export const getTypes = () => {
         } catch (error) {
             console.log(error);
         }
+    }
+}
+
+
+export const clearPokemons = () => {
+    return {
+        type: CLEAR_POKEMONS,
+        payload: []
     }
 }

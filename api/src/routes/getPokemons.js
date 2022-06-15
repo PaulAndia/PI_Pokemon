@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
             let pokemonMatches = await totalPokemons.filter(e => e.name.toLowerCase().indexOf(name.toLowerCase()) !== -1);
             // We need to find each of the matches even within words
             if(pokemonMatches.length > 0) res.status(201).json(pokemonMatches);
-            else res.status(404).send({ message: 'The pokemon name does not exist, try another'});
+            else res.status(404).json([{error: 'The pokemon name does not exist'}]);
         }
         else{
             return res.status(201).json(totalPokemons);
