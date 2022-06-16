@@ -5,7 +5,8 @@ export const GET_POKEMON_NAME = "GET_POKEMON_NAME";
 export const CLEAR_DETAILS = "CLEAR_DETAILS"; 
 export const GET_TYPES = "GET_TYPES"; 
 export const MSG_ERROR = "MSG_ERROR"; 
-export const CLEAR_POKEMONS = "CLEAR_POKEMONS"; 
+export const CLEAR_POKEMONS = "CLEAR_POKEMONS";
+export const POST_POKEMON = "POST_POKEMON";
 
 const msgErr = {
     type: MSG_ERROR,
@@ -87,5 +88,12 @@ export const clearPokemons = () => {
     return {
         type: CLEAR_POKEMONS,
         payload: []
+    }
+}
+
+export const postPokemon = (formData) => {
+    return async function(dispatch){
+        await axios.post('http://localhost:3001/pokemon', formData);
+        return dispatch({type: POST_POKEMON})
     }
 }

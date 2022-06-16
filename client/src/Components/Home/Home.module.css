@@ -5,3 +5,23 @@
     padding: 20px;
     justify-content: center;
 }
+
+.contnotFound{
+    display: flex;
+    justify-content: center;
+    padding: 5%;
+}
+
+.noFound{
+    background-image:url("../images/L2.gif");
+    background-position:center;
+    background-repeat: no-repeat;
+    height: 350px;
+    width: 480px;
+}
+
+.noFound p{
+    padding: 0%;
+    margin: 0%;
+    font-size: 20px;
+}

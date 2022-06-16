@@ -1,7 +1,7 @@
 import {
     GET_ALL_POKEMONS, GET_POKEMON_DETAILS, 
     CLEAR_DETAILS, GET_POKEMON_NAME, GET_TYPES, MSG_ERROR,
-    CLEAR_POKEMONS
+    CLEAR_POKEMONS, POST_POKEMON
 } from './Actions';
 
 // we define the initial state
@@ -52,6 +52,10 @@ const rootReducer = (state=initialState, action) =>{
             return {
                 ...state,
                 error: action.payload
+            }
+        case POST_POKEMON:
+            return {
+                ...state
             }
 
         default: 

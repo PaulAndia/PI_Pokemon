@@ -1,8 +1,16 @@
 import React from 'react';
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getTypes, postPokemon } from '../../Redux/Actions';
 import styles from './Form.module.css'
 
 export function Form() {
+    const dispatch = useDispatch();
+    const typesPoke = useSelector(state => state.types); 
+
+    useEffect(() => {
+        dispatch(getTypes())
+    }, [dispatch]);
 
     const [formInput, setFormInput] = useState({
         name: "",
@@ -64,16 +72,39 @@ export function Form() {
         )
     }
 
+    function handleSelect (e){
+        setFormInput({
+            ...formInput,
+            types: [...formInput.types, e.target.value]
+        })
+    }
+
+    function handleSubmit(e){
+        e.preventDefault();
+        dispatch(postPokemon(formInput))
+        alert("Pokemon created succesfully");
+        setFormInput({
+            name: "",
+           image: "",
+           life: 0,
+           attack: 0,
+           defense: 0,
+           speed: 0,
+           height: 0,
+           weight: 0,
+           types: []
+        })
+    }
 
     return (
         <div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label htmlFor = "name" >Name: </label>
                     <input 
                         id="name"
                         type="text"
                         name="name"
-                        value={console.log(formInput.name)}
+                        value={formInput.name}
                         onChange={handleInputChange}
                         placeholder="Pokemon name"
                         autoComplete='off'
@@ -87,7 +118,7 @@ export function Form() {
                         id="image"
                         type="text"
                         name="image"
-                        value={console.log(formInput.image)}
+                        value={formInput.image}
                         onChange={handleInputChange}
                         placeholder="Ex: https://example.com/photo.jpg"
                         autoComplete='off'
@@ -174,8 +205,21 @@ export function Form() {
                     /> <span>dm.</span>
                      {errors.height ? <span className={styles.errors}>{errors.height}</span>: null}
                     <br/>
-                        
 
+                    
+                        <label htmlFor = "types" >Select the type of pokemon: </label>
+                        <select name= "types" id="types" onChange={handleSelect}>
+                            {typesPoke.map(e => 
+                                (<option value={e.name}>{e.name}</option>)
+                                )}
+                        </select>
+                        <ul className={styles.select}>
+                            {formInput.types.map((t) => (
+                                <li >{t}</li>
+                                ))}
+                        </ul>
+                        <br/>
+                   
                     <button type="submit" name="submit" 
                         disabled = {Object.entries(errors).length === 0 ? false: true}>Create   
                     </button>

@@ -1,0 +1,16 @@
+.currentPageButton{
+    background-color: red;
+    cursor: pointer;
+    border-radius: 15px;
+    height: 30px;
+    width: 30px;
+    border-width: 1px;
+}
+
+.buttonPage{
+    cursor: pointer;
+    border-radius: 15px;
+    height: 30px;
+    width: 30px;
+    border-width: 1px;  
+}

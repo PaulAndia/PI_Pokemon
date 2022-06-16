@@ -14,7 +14,7 @@ export function Types() {
         <div>
             <h1>TYPES OF POKEMON</h1>
                 {typesPokemon?.map(e => 
-                    (<li>
+                    (<li key={e.id}>
                         {e.name}
                     </li>)
                 )}

@@ -1,9 +1,11 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { clearPokemons, getAllPokemons } from '../../Redux/Actions';
 import styles from './Home.module.css'
 import {Link} from 'react-router-dom';
 import { NavBar } from '../NavBar/NavBar';
+import { Loading } from '../Loading/Loading';
+import { Pagination } from '../Pagination/Pagination';
 
 
 export function Home() {
@@ -20,15 +22,32 @@ export function Home() {
         dispatch(getAllPokemons())
     }
 
+    //---pokemonsPerPage---//
+    const pokemonsPerPage = 12;
+    const [page, setPage] = useState(1);
+    const initialiIndex = (page*pokemonsPerPage)-pokemonsPerPage; 
+    const finalIndex = (page*pokemonsPerPage);
+    const pokemonsShownPerPage = fullPokemons.slice(initialiIndex, finalIndex);
+
+    useEffect(()=> {
+        setPage(1)
+    }, [fullPokemons])
+
+    function changePage(n) {
+        return setPage(n);
+    }
+    //---pokemonsPerPage---//
+
 
     return (
         <>
         <NavBar backHome = {backHome}/>
+        <Pagination fullPokemons={fullPokemons} pokemonsPerPage={pokemonsPerPage} page={page} changePage={changePage}/>
         <div>
             {msgError.length === 0 ? 
                (fullPokemons.length > 0 ? (
                 <ul className={styles.grid}>
-                    {fullPokemons.map(pok => (
+                    {pokemonsShownPerPage.map(pok => (
                         <li key={pok.id}>
                             <Link to={`/pokemons/${pok.id}`}>
                                     <img src={pok.image} alt={pok.name} 
@@ -44,7 +63,12 @@ export function Home() {
                         </li>
                     ))}
                 </ul>
-            ): <p>LOADING...</p>): <p>{msgError}</p>}
+            ): <Loading />):
+            <div className={styles.contnotFound}>
+                <div className={styles.noFound}>
+                    <p>{msgError}</p>
+                </div>
+            </div>}
         </div>
         </>
     )

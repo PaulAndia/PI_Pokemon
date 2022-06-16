@@ -2,6 +2,7 @@ import React, { useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { getPokemonDetails, clearDetails } from '../../Redux/Actions';
 import { useParams } from 'react-router-dom';
+import { Loading } from '../Loading/Loading';
 
 
 export function Details() {
@@ -33,11 +34,14 @@ export function Details() {
                         <h3>{p.name}</h3>
                         <p>Types: {p.types.join(", ")}</p>
                         <p>Life: {p.life}</p>
+                        <p>Attack: {p.attack}</p>
+                        <p>Defense: {p.defense}</p>
+                        <p>Speed: {p.defense}</p>
                         <p>Weight: {p.weight}</p>
                         <p>Height: {p.height}</p>
                     </div>
                 )
-                )): <p>LOADING....</p>}
+                )): <Loading/>}
         </div>
     )
 }

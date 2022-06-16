@@ -10,10 +10,10 @@ export function SearchBar() {
 
     const handleSubmit = (e) => {
         e.preventDefault(); // it prevents the page from reloading
-       history.push("/pokemons?name=" + searchName);
-       if(searchName.length > 0){
-           dispatch(clearPokemons());
-           dispatch(getPokemonByName(searchName));
+        if(searchName.length > 0){
+            dispatch(clearPokemons());
+            dispatch(getPokemonByName(searchName));
+            history.push({search: `?name=${searchName}`});
            setSearchName(""); // It clears the search bar
        }
        else{
