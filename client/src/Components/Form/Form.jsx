@@ -2,6 +2,8 @@ import React from 'react';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTypes, postPokemon } from '../../Redux/Actions';
+import { Modal } from '../Modal/Modal';
+import { NavBar } from '../NavBar/NavBar';
 import styles from './Form.module.css'
 
 export function Form() {
@@ -12,6 +14,7 @@ export function Form() {
         dispatch(getTypes())
     }, [dispatch]);
 
+    const [openModal, setOpenModal] = useState(false);
     const [formInput, setFormInput] = useState({
         name: "",
        image: "",
@@ -82,7 +85,7 @@ export function Form() {
     function handleSubmit(e){
         e.preventDefault();
         dispatch(postPokemon(formInput))
-        alert("Pokemon created succesfully");
+        //alert("Pokemon created succesfully");
         setFormInput({
             name: "",
            image: "",
@@ -96,7 +99,16 @@ export function Form() {
         })
     }
 
+    function deleteSelectedType(value){
+        setFormInput({
+            ...formInput,
+            types: [...formInput.types.filter(e => {return e !== value})]
+        })
+    }
+
     return (
+        <>
+        <NavBar/>
         <div>
             <form onSubmit={handleSubmit}>
                 <label htmlFor = "name" >Name: </label>
@@ -213,17 +225,22 @@ export function Form() {
                                 (<option value={e.name}>{e.name}</option>)
                                 )}
                         </select>
-                        <ul className={styles.select}>
+                        <div className={styles.selected}>
                             {formInput.types.map((t) => (
-                                <li >{t}</li>
-                                ))}
-                        </ul>
+                                <div className={styles.containerType}>
+                                    <span className={styles.close} onClick={() => deleteSelectedType(t)}>X</span>
+                                    {t}
+                                </div>
+                            ))}
+                        </div>
                         <br/>
                    
-                    <button type="submit" name="submit" 
+                    <button type="submit" name="submit" onClick={() => setOpenModal(true)}
                         disabled = {Object.entries(errors).length === 0 ? false: true}>Create   
                     </button>
             </form>
+                    <Modal openModal = {openModal} onClose = {() => setOpenModal(false)}/>
         </div>
+        </>
     )
 }

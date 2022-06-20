@@ -1,0 +1,71 @@
+.cont{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.gridTypes{
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 170px);
+    padding: 5px;
+    justify-content: center;
+    text-align: center ;
+    align-items: center;
+    margin-top: 220px;
+    position: relative;
+    align-items: center;
+    margin-left: 60px;
+}
+
+.typesPoke{
+    
+    position: absolute;
+    background-image: url("../images/title.JPG");
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: 350px 110px;
+    border-style: solid;
+    border-radius: 20px;
+    border-width: 1px;
+    height: 110px;
+    width: 350px;
+    margin-left: 470px;
+    top: 100px;
+}
+
+.typescards{
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    font-size: 1rem;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+    border-width: 2px;
+    margin-left: 20px;
+    margin-top: 5px;
+    border-color: red;
+    border-radius: 20px;
+    height: 30px;
+    width: 100px;
+    transition: 0.4s;
+    font-weight: bold;
+}
+
+
+.chart{
+    position: absolute;
+    background-color: white;
+    background-image: url("../images/type8.png");
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: 650px 250px;
+    border-style: solid;
+    border-radius: 20px;
+    border-width: 1px;
+    height: 250px;
+    width: 650px;
+    margin-left: 330px;
+    top: 360px;
+}

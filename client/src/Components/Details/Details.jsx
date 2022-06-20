@@ -1,9 +1,10 @@
 import React, { useEffect} from 'react';
+import styles  from './Details.module.css'
 import {useDispatch, useSelector} from 'react-redux';
 import { getPokemonDetails, clearDetails } from '../../Redux/Actions';
 import { useParams } from 'react-router-dom';
 import { Loading } from '../Loading/Loading';
-
+import { NavBar } from '../NavBar/NavBar';
 
 export function Details() {
 
@@ -20,28 +21,41 @@ export function Details() {
 
 
     return (
-        <div>
+        <>
+        <NavBar/>
+        <div className={styles.cont}>
             { pokemonDetail.length > 0 ?
                 (pokemonDetail.map(p => (
-                    <div key={p.id}>
-                        <img src={p.image} alt={p.name} 
-                            width={220} height={226}
-                            onError={e => {
-                                e.target.onerror = null;
-                                e.target.src = "https://media1.giphy.com/media/ehh35VzinMYyqxqANH/giphy.gif";    
-                            }}
-                        />
-                        <h3>{p.name}</h3>
-                        <p>Types: {p.types.join(", ")}</p>
-                        <p>Life: {p.life}</p>
-                        <p>Attack: {p.attack}</p>
-                        <p>Defense: {p.defense}</p>
-                        <p>Speed: {p.defense}</p>
-                        <p>Weight: {p.weight}</p>
-                        <p>Height: {p.height}</p>
+                    <div key={p.id} className={styles.dex}>
+                        <div className={styles.pic}>
+                            <img src={p.image} alt={p.name} 
+                                width={165} height={190}
+                                onError={e => {
+                                    e.target.onerror = null;
+                                    e.target.src = "https://media1.giphy.com/media/ehh35VzinMYyqxqANH/giphy.gif";    
+                                }}
+                            />
+                        </div>
+                        <div className={styles.desc}>
+                            <div className={styles.title}>
+                                <h3>{p.name.toUpperCase()}</h3>
+                                <p><strong>Types:</strong> {p.types.map(el => el[0].toUpperCase()+el.substring(1)).join(", ")}</p>
+                            </div>
+                            <div className={styles.grid}>
+                                <p><strong>Life:</strong> {p.life}</p>
+                                <p><strong>Attack:</strong> {p.attack}</p>
+                                <p><strong>Defense:</strong> {p.defense}</p>
+                                <p><strong>Speed:</strong> {p.defense}</p>
+                                <p><strong>Weight:</strong> {p.weight}</p>
+                                <p><strong>Height:</strong> {p.height}</p>
+                            </div>
+                            
+                        </div>
+                        <div className={styles.mov}></div>
                     </div>
                 )
                 )): <Loading/>}
         </div>
+        </>
     )
 }

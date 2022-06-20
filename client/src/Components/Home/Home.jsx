@@ -1,21 +1,26 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { clearPokemons, getAllPokemons } from '../../Redux/Actions';
+import { clearPokemons, getAllPokemons, getTypes } from '../../Redux/Actions';
 import styles from './Home.module.css'
 import {Link} from 'react-router-dom';
 import { NavBar } from '../NavBar/NavBar';
 import { Loading } from '../Loading/Loading';
 import { Pagination } from '../Pagination/Pagination';
+import { Filters } from '../Filters/Filters';
 
 
 export function Home() {
     const dispatch = useDispatch();
     const fullPokemons = useSelector(state => state.allPokemons);
     const msgError = useSelector(state => state.error);
+
     
-    useEffect(() => {
-        dispatch(getAllPokemons())
-    }, [dispatch]);
+        useEffect(() => {
+            dispatch(getAllPokemons())
+            dispatch(getTypes())
+        }, [dispatch]);
+    
+    
 
     const backHome = () => {
         dispatch(clearPokemons())
@@ -42,23 +47,24 @@ export function Home() {
     return (
         <>
         <NavBar backHome = {backHome}/>
+        <Filters fullPokemons= {fullPokemons}/>
         <Pagination fullPokemons={fullPokemons} pokemonsPerPage={pokemonsPerPage} page={page} changePage={changePage}/>
-        <div>
+        <div className={styles.back}>
             {msgError.length === 0 ? 
                (fullPokemons.length > 0 ? (
                 <ul className={styles.grid}>
                     {pokemonsShownPerPage.map(pok => (
-                        <li key={pok.id}>
+                        <li key={pok.id} className={styles.cards}>
                             <Link to={`/pokemons/${pok.id}`}>
+                                <h3><strong>{pok.name.toUpperCase()}</strong></h3>
                                     <img src={pok.image} alt={pok.name} 
-                                    width={220} height={226}
+                                    width={200} height={180}
                                     onError={e => {
                                         e.target.onerror = null;
                                         e.target.src = "https://media1.giphy.com/media/ehh35VzinMYyqxqANH/giphy.gif";    
                                     }}/>
-                                    <h3><strong>{pok.name}</strong></h3>
-                                    <p>Type: {pok.types.join(", ")}</p>
-                                    <p>Life: {pok.life}</p>
+                                    <p><strong>Type:</strong> <br/>{pok.types.map(el => el[0].toUpperCase()+el.substring(1)).join(", ")}</p>
+                                    
                             </Link>
                         </li>
                     ))}

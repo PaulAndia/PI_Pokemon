@@ -1,0 +1,29 @@
+.searchContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.searchbox{
+    position: relative;
+    border-width: 1px;
+}
+
+.input{
+    height: 25px;
+    padding: 5px 70px 5px 10px;
+    border-radius: 5px;
+}
+
+.button{
+    right: 10px;
+    border-radius: 5px;
+    top: 0;
+    cursor: pointer;
+    height: 100%;
+    border-width: 1px;
+    background: none;
+}
+
+.button:hover{
+    color: black;
+}

@@ -1,6 +1,8 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { getTypes } from '../../Redux/Actions';
+import { clearPokemons, getTypes } from '../../Redux/Actions';
+import { NavBar } from '../NavBar/NavBar';
+import styles from './Types.module.css'
 
 export function Types() {
     const dispatch = useDispatch();
@@ -8,16 +10,23 @@ export function Types() {
 
     useEffect(() => {
         dispatch(getTypes())
+        // dispatch(clearPokemons())
     }, [dispatch]);
     
     return (
-        <div>
-            <h1>TYPES OF POKEMON</h1>
-                {typesPokemon?.map(e => 
-                    (<li key={e.id}>
-                        {e.name}
+        <>
+        <NavBar/>
+        <div className={styles.cont}>
+            <div className={styles.typesPoke}></div>
+            <ul className={styles.gridTypes}>
+            {typesPokemon?.map(e => 
+                    (<li key={e.id} className={styles.typescards}>
+                        {e.name.toUpperCase()}
                     </li>)
                 )}
+            </ul>
+            <div className={styles.chart}></div>
         </div>
+        </>
     )
 }

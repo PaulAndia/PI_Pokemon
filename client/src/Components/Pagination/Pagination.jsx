@@ -6,8 +6,6 @@ export function Pagination({fullPokemons, pokemonsPerPage, page, changePage}) {
     const buttons = [];
     for (let i = 0; i < numberOfPages; i++) buttons.push(i);
     
-    
-
     return (
         <div>
             {buttons.map(e => (

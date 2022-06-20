@@ -2,6 +2,7 @@ import { useState} from 'react';
 import { useDispatch } from "react-redux";
 import { clearPokemons, getPokemonByName } from '../../Redux/Actions';
 import { useHistory } from 'react-router-dom';
+import styles from './SearchBar.module.css'
 
 export function SearchBar() {
     const dispatch = useDispatch();
@@ -11,9 +12,9 @@ export function SearchBar() {
     const handleSubmit = (e) => {
         e.preventDefault(); // it prevents the page from reloading
         if(searchName.length > 0){
-            dispatch(clearPokemons());
             dispatch(getPokemonByName(searchName));
-            history.push({search: `?name=${searchName}`});
+            dispatch(clearPokemons());
+            history.push(`/pokemons?name=${searchName}`);
            setSearchName(""); // It clears the search bar
        }
        else{
@@ -26,15 +27,16 @@ export function SearchBar() {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className={styles.searchContainer}>
+            <form onSubmit={handleSubmit} className = {styles.searchbox}>
                 <input 
+                className={styles.input} 
                 type="text"
                 value={searchName}
                 onChange={(e) => handleInputChange(e)}
                 placeholder="Search pokemon..."
                 />
-                <button type='submit'>Search</button>
+                <button className={styles.button} type='submit'>Search</button>
             </form>
         </div>
     )

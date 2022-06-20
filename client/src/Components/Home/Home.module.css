@@ -1,8 +1,15 @@
+/* .back{
+    background-image: url("../images/fondo2.jpg");
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover; 
+} */
+
 .grid{
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 300px);
-    padding: 20px;
+    grid-template-columns: repeat(auto-fill, 330px);
+    padding: 5px;
     justify-content: center;
 }
 
@@ -24,4 +31,42 @@
     padding: 0%;
     margin: 0%;
     font-size: 20px;
+}
+
+.cards{
+    font-size: 1rem;
+    text-align: left;
+    justify-content: center;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(255, 255, 255);
+    margin: 12px;
+    border-radius: 20px;
+    background-image: url("../images/dex2.png");
+    background-size: 300px 470px;
+    background-repeat: no-repeat;
+    height: 460px;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.cards:hover{
+    transform: scale(1.1);
+    box-shadow: 0 5px 20px rgba(245, 57, 0, 0.582);
+}
+
+.cards img{
+    
+    margin-left: 45px;
+}
+
+.cards h3{
+    margin-top: 120px;
+    margin-left: 18px;
+    font-size: 23px;
+}
+
+.cards p{
+    margin-top: 11%;
+    text-align: center;
 }

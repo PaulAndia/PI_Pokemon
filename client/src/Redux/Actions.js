@@ -7,6 +7,12 @@ export const GET_TYPES = "GET_TYPES";
 export const MSG_ERROR = "MSG_ERROR"; 
 export const CLEAR_POKEMONS = "CLEAR_POKEMONS";
 export const POST_POKEMON = "POST_POKEMON";
+export const FILTER_ALPHABET = "FILTER_ALPHABET";
+export const FILTER_ATTACK = "FILTER_ATTACK";
+export const FILTER_TYPE = "FILTER_TYPE";
+export const FILTER_CREATED = "FILTER_CREATED";
+export const FILTER_TYPES = "FILTER_TYPES";
+
 
 const msgErr = {
     type: MSG_ERROR,
@@ -95,5 +101,34 @@ export const postPokemon = (formData) => {
     return async function(dispatch){
         await axios.post('http://localhost:3001/pokemon', formData);
         return dispatch({type: POST_POKEMON})
+    }
+}
+
+//Filters
+export const filterAlphabetically = (order) => {
+    return {
+        type: FILTER_ALPHABET,
+        payload: order
+    }
+}
+
+export const filterByTypes = (types) => {
+    return {
+        type: FILTER_TYPES,
+        payload: types
+    }
+}
+
+export const filterCreate = (origin) => {
+    return {
+        type: FILTER_CREATED,
+        payload: origin
+    }
+}
+
+export const filterByAttack = (attack) => {
+    return {
+        type: FILTER_ATTACK,
+        payload: attack
     }
 }

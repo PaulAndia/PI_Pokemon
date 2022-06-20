@@ -1,0 +1,62 @@
+.fullCont{
+    position: fixed;
+    width: 100%;
+}
+.navContainer{
+    list-style: none;
+}
+
+.navContainer li{
+    display: inline-block;
+    padding: 0px 10px;
+}
+
+.menu:hover{
+    color: #000000;
+    background-color: rgba(0, 136, 169, 0.8);
+}
+
+.menu{
+    padding: 5px 13px;
+    background: none;
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    border-radius: 30px;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.navContainer li button {
+    color: white;
+    text-decoration: none;
+}
+
+.header{
+    width: 100%;
+    background-color: rgb(218, 31, 31);
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1px;
+}
+
+.logo{
+    cursor: pointer;
+}
+
+.add{
+    background-color: rgb(24, 219, 17);
+    border-radius: 30px;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    padding: 9px 13px;
+}
+
+.add:hover{
+    color: black;
+}

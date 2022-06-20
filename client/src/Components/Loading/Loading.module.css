@@ -1,20 +1,20 @@
 .loaderContainer{
     display: flex;
     justify-content: center;
-    padding: 5%;
+    padding: 10%;
 }
 
 .loader{
     background-image:url("../images/L8.gif");
     background-position:center;
     background-repeat: no-repeat;
-    height: 400px;
-    width: 400px;
+    height: 350px;
+    width: 350px;
     font-size: 25px;
     border-radius: 200px;
     
 }
 
 .loader p{
-    padding-top: 10px;
+    padding-top: 0px;
 }

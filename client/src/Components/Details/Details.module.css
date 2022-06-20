@@ -1,0 +1,63 @@
+.cont{
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 17px;
+}
+
+.dex{
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    background-image: url("../images/dex4.png");
+    background-size: 840px 500px;
+    background-repeat: no-repeat;
+    width: 840px;
+    height: 500px;
+    position: relative;
+    top: 35px;
+}
+
+.pic{
+   position: absolute;
+  left: 22%;
+  top: 27%;
+ 
+}
+
+.desc{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 25%;
+    left: 61%;
+    justify-content: center;
+} 
+
+.title{
+    width: 260px;
+}
+
+.grid{
+    width: 320px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 160px);
+}
+
+.grid p{
+    margin-top: 0%;
+    text-align: left;
+}
+
+.mov{
+    background-image: url("../images/det.gif");
+    background-repeat: no-repeat; 
+    background-size: 100px 140px;
+    position: absolute;
+    height: 120px;
+    width: 120px;
+    left: 8%;
+    top: 31%;
+    
+}
