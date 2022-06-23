@@ -35,9 +35,9 @@ export function NavBar({backHome}) {
                     <button className={styles.add}> + ADD POKEMON</button>
                 </Link>
             </li>
-            <li>
-            <SearchBar/>
-            </li>
+            {/* <li>
+                <SearchBar/>
+            </li> */}
         </ul>
         </nav>
         </div>

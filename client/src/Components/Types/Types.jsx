@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { clearPokemons, getTypes } from '../../Redux/Actions';
+import { clearPokemons, getAllPokemons, getTypes } from '../../Redux/Actions';
 import { NavBar } from '../NavBar/NavBar';
 import styles from './Types.module.css'
 
@@ -10,7 +10,6 @@ export function Types() {
 
     useEffect(() => {
         dispatch(getTypes())
-        // dispatch(clearPokemons())
     }, [dispatch]);
     
     return (

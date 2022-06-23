@@ -12,6 +12,7 @@ export const FILTER_ATTACK = "FILTER_ATTACK";
 export const FILTER_TYPE = "FILTER_TYPE";
 export const FILTER_CREATED = "FILTER_CREATED";
 export const FILTER_TYPES = "FILTER_TYPES";
+export const CLEAR_FILTERS = "CLEAR_FILTERS";
 
 
 const msgErr = {
@@ -19,7 +20,7 @@ const msgErr = {
     payload: ["POKEMON NOT FOUND"]
 }
 
-export const getAllPokemons = () => {
+export const getAllPokemons = (name) => {
     return async function(dispatch){
         try {
             const response = await axios.get("http://localhost:3001/pokemons");
@@ -130,5 +131,12 @@ export const filterByAttack = (attack) => {
     return {
         type: FILTER_ATTACK,
         payload: attack
+    }
+}
+
+export const clearFilters = (allPokes) => {
+    return {
+        type: CLEAR_FILTERS,
+        payload: allPokes
     }
 }

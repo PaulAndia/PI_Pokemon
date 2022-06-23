@@ -1,0 +1,52 @@
+.filtContainer{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 220px);
+    height: 45px;
+    width: 100%;
+    margin-top: 0px;
+    background-color: rgb(189, 82, 82);
+    justify-content: center;
+    padding: 3px;
+    border-radius: 2px;
+    align-items:center;
+}
+
+.filtContainer select{
+    margin: 5px;
+    margin-left: 80px;
+    border-radius: 10px;
+    font-size: 14px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    align-items: center;
+    text-align: center;
+    height: 30px;
+    width: 180px;
+}
+/* 
+.search{
+    width: 300px;
+} */
+
+.all{
+    background-color: yellow;
+    cursor: pointer;
+}
+
+
+
+.normal{
+   
+    cursor: pointer;
+}
+
+.clear{
+    background-color: rgb(235, 147, 235);
+    cursor: pointer;
+    height: 30px;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+
+}

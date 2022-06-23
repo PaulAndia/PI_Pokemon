@@ -7,14 +7,15 @@ import styles from './SearchBar.module.css'
 export function SearchBar() {
     const dispatch = useDispatch();
     const [searchName, setSearchName] = useState("");
-    const history = useHistory();
+    // const history = useHistory();
+
 
     const handleSubmit = (e) => {
         e.preventDefault(); // it prevents the page from reloading
-        if(searchName.length > 0){
-            dispatch(getPokemonByName(searchName));
+        if(searchName && searchName.length > 0){
             dispatch(clearPokemons());
-            history.push(`/pokemons?name=${searchName}`);
+            dispatch(getPokemonByName(searchName));
+            // history.push(`/pokemons?name=${searchName}`);
            setSearchName(""); // It clears the search bar
        }
        else{
@@ -36,7 +37,9 @@ export function SearchBar() {
                 onChange={(e) => handleInputChange(e)}
                 placeholder="Search pokemon..."
                 />
-                <button className={styles.button} type='submit'>Search</button>
+                <button className={styles.button} type='submit'>
+                        Search
+                </button>
             </form>
         </div>
     )

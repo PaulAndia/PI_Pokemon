@@ -1,9 +1,20 @@
-/* .back{
-    background-image: url("../images/fondo2.jpg");
-    background-position:center;
-    background-repeat: no-repeat;
-    background-size: cover; 
-} */
+.back{
+    margin-top: 115px;
+}
+
+.pag{
+    height: 35px;
+    background-color: rgb(189, 82, 82);;
+}
+
+
+
+.nav{
+    position: fixed;
+    width: 100%;
+    margin-top: 0%;
+    top: 0;
+}
 
 .grid{
     list-style: none;
@@ -11,6 +22,7 @@
     grid-template-columns: repeat(auto-fill, 330px);
     padding: 5px;
     justify-content: center;
+    
 }
 
 .contnotFound{
@@ -69,4 +81,16 @@
 .cards p{
     margin-top: 11%;
     text-align: center;
+}
+
+.pagfoot{
+    height: 34px;
+    padding-top: 5px;
+    align-items: center;
+    width: 100%;
+    background-color: rgb(189, 82, 82);
+    position: fixed;
+    bottom: 0%;
+    border-width: 1px;
+    border-style: solid;
 }

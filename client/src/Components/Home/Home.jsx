@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { clearPokemons, getAllPokemons, getTypes } from '../../Redux/Actions';
+import { clearPokemons, getAllPokemons, getTypes} from '../../Redux/Actions';
 import styles from './Home.module.css'
 import {Link} from 'react-router-dom';
 import { NavBar } from '../NavBar/NavBar';
@@ -13,11 +13,15 @@ export function Home() {
     const dispatch = useDispatch();
     const fullPokemons = useSelector(state => state.allPokemons);
     const msgError = useSelector(state => state.error);
-
+    console.log(fullPokemons)
     
+   
         useEffect(() => {
-            dispatch(getAllPokemons())
             dispatch(getTypes())
+            if(fullPokemons.length === 0 ) dispatch(getAllPokemons())
+            return () => {
+                dispatch(clearPokemons());
+            }
         }, [dispatch]);
     
     
@@ -46,12 +50,14 @@ export function Home() {
 
     return (
         <>
+        <div className={styles.nav}>
         <NavBar backHome = {backHome}/>
-        <Filters fullPokemons= {fullPokemons}/>
-        <Pagination fullPokemons={fullPokemons} pokemonsPerPage={pokemonsPerPage} page={page} changePage={changePage}/>
+        <Filters fullPokemons={fullPokemons}/>
+            
+        </div>
         <div className={styles.back}>
-            {msgError.length === 0 ? 
-               (fullPokemons.length > 0 ? (
+            {msgError.length === 0 ?
+               (fullPokemons.length > 0  ? (
                 <ul className={styles.grid}>
                     {pokemonsShownPerPage.map(pok => (
                         <li key={pok.id} className={styles.cards}>
@@ -64,7 +70,6 @@ export function Home() {
                                         e.target.src = "https://media1.giphy.com/media/ehh35VzinMYyqxqANH/giphy.gif";    
                                     }}/>
                                     <p><strong>Type:</strong> <br/>{pok.types.map(el => el[0].toUpperCase()+el.substring(1)).join(", ")}</p>
-                                    
                             </Link>
                         </li>
                     ))}
@@ -76,6 +81,9 @@ export function Home() {
                 </div>
             </div>}
         </div>
+        <div className={styles.pagfoot}>
+                <Pagination fullPokemons={fullPokemons} pokemonsPerPage={pokemonsPerPage} page={page} changePage={changePage}/>
+            </div>
         </>
     )
 }

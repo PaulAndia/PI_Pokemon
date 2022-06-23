@@ -14,6 +14,7 @@ export function Form() {
         dispatch(getTypes())
     }, [dispatch]);
 
+    const [disable, setDisable] = useState(true);
     const [openModal, setOpenModal] = useState(false);
     const [formInput, setFormInput] = useState({
         name: "",
@@ -31,13 +32,13 @@ export function Form() {
 
     //regular expressions
     const regExp = {
-    name: /^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\-., ]{5,50}$/,
+    name: /^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\-., ]{5,30}$/,
     image:  /^https?:\/\/.+\.(jpg|jpeg|png|webp|avif|gif|svg)$/,
     }
 
     //error alerts
     const alerts = {
-    name: "Insert a name between 5 and 50 characters",
+    name: "Name between 5 and 30 characters",
     image: "Insert an URL ",
     weight: "Weight between 1-2500 (pounds)",
     height: "Height between 1-250 (decimetres)"
@@ -49,9 +50,9 @@ export function Form() {
         if(!regExp.name.test(value.name)){ // --> if value does not meet this condition... then
             errors.name = alerts.name;
         }
-        if(!regExp.image.test(value.image) ){
-            errors.image = alerts.image;
-        }
+        // if(!regExp.image.test(value.image) ){
+        //     errors.image = alerts.image;
+        // }
         if(value.weight > 2500 || value.weight < 1 || !value.weight){
             errors.weight = alerts.weight;
         }
@@ -73,6 +74,7 @@ export function Form() {
             [e.target.name]: e.target.value
          })
         )
+        setDisable(false)
     }
 
     function handleSelect (e){
@@ -85,7 +87,6 @@ export function Form() {
     function handleSubmit(e){
         e.preventDefault();
         dispatch(postPokemon(formInput))
-        //alert("Pokemon created succesfully");
         setFormInput({
             name: "",
            image: "",
@@ -97,6 +98,7 @@ export function Form() {
            weight: 0,
            types: []
         })
+        setDisable(true)
     }
 
     function deleteSelectedType(value){
@@ -109,24 +111,35 @@ export function Form() {
     return (
         <>
         <NavBar/>
-        <div>
+        <div className={styles.container}>
+            <h2>CREATE YOUR POKEMON</h2>
+                <div className={styles.formContainer}>
             <form onSubmit={handleSubmit}>
-                <label htmlFor = "name" >Name: </label>
-                    <input 
-                        id="name"
-                        type="text"
-                        name="name"
-                        value={formInput.name}
-                        onChange={handleInputChange}
-                        placeholder="Pokemon name"
-                        autoComplete='off'
-                        required
-                    />
-                     {errors.name ? <span className={styles.errors}>{errors.name}</span>: null}
-                    <br/>
-
+                <div className={styles.inputCont}>
+                    <label htmlFor = "name" >Name: </label>
+                        <input 
+                            className={styles.input}
+                            id="name"
+                            type="text"
+                            name="name"
+                            value={formInput.name}
+                            onChange={handleInputChange}
+                            placeholder="Pokemon name"
+                            autoComplete='off'
+                            // required
+                        />
+                        
+                        <br/>
+                </div>
+                <div>
+                    {errors.name ? <span className={styles.errors}>{errors.name}</span>: null}
+                </div>
+                
+                
+                <div className={styles.inputCont}>
                     <label htmlFor = "image" >Image: </label>
                     <input 
+                        className={styles.input}
                         id="image"
                         type="text"
                         name="image"
@@ -134,14 +147,19 @@ export function Form() {
                         onChange={handleInputChange}
                         placeholder="Ex: https://example.com/photo.jpg"
                         autoComplete='off'
-                        required
+                        // required
                     />
-                     {errors.image ? <span className={styles.errors}>{errors.image}</span>: null}
                     <br/>
+                </div>
+                <div>
+                     {errors.image ? <span className={styles.errors}>{errors.image}</span>: null}
+                </div>
 
-
+            <div className={styles.ranges}>
+                <div className={styles.rangeCont}>
                     <label htmlFor = "life" >Life: </label>
                     <input 
+                        className={styles.range}
                         id="life"
                         type="range"
                         name="life"
@@ -151,9 +169,12 @@ export function Form() {
                         onChange={handleInputChange}/>
                     <span>{formInput.life}</span>
                     <br/>
-                    
-                    <label htmlFor = "attack" >Attack: </label>
+                </div>
+
+                <div className={styles.rangeCont}> 
+                <label htmlFor = "attack" >Attack: </label>
                     <input 
+                        className={styles.range}
                         id="attack"
                         type="range"
                         name="attack"
@@ -163,9 +184,12 @@ export function Form() {
                         onChange={handleInputChange}/>
                     <span>{formInput.attack}</span>
                     <br/>
-                    
+                </div>
+
+                <div className={styles.rangeCont}>
                     <label htmlFor = "defense" >Defense: </label>
                     <input 
+                        className={styles.range}
                         id="defense"
                         type="range"
                         name="defense"
@@ -175,9 +199,12 @@ export function Form() {
                         onChange={handleInputChange}/>
                     <span>{formInput.defense}</span>
                     <br/>
+                </div>
 
+                <div className={styles.rangeCont}>
                     <label htmlFor = "speed" >Speed: </label>
                     <input 
+                        className={styles.range}
                         id="speed"
                         type="range"
                         name="speed"
@@ -187,10 +214,14 @@ export function Form() {
                         onChange={handleInputChange}/>
                     <span>{formInput.speed}</span>
                     <br/>    
-                        
+                </div>
+                </div>
 
+
+                <div className={styles.inputCont}>
                     <label htmlFor = "weight" >Weight: </label>
                     <input 
+                        className={styles.input}
                         id="weight" 
                         type="number" 
                         name="weight"
@@ -200,12 +231,16 @@ export function Form() {
                         max={2500}
                         required
                     /><span>Lbs.</span>
-                     {errors.weight ? <span className={styles.errors}>{errors.weight}</span>: null}
                     <br/>
+                </div>
+                <div>
+                    {errors.weight ? <span className={styles.errors}>{errors.weight}</span>: null}
+                </div>
 
-
+                <div className={styles.inputCont}>
                     <label htmlFor = "height" >Height: </label>
                     <input 
+                        className={styles.input}
                         id="height" 
                         type="number" 
                         name="height"
@@ -215,31 +250,37 @@ export function Form() {
                         max={2500}
                         required
                     /> <span>dm.</span>
-                     {errors.height ? <span className={styles.errors}>{errors.height}</span>: null}
                     <br/>
-
+                </div>
+                <div>
+                     {errors.height ? <span className={styles.errors}>{errors.height}</span>: null}
+                </div>
                     
-                        <label htmlFor = "types" >Select the type of pokemon: </label>
-                        <select name= "types" id="types" onChange={handleSelect}>
+                <div className={styles.inputCont}>
+                        <label htmlFor = "types" >Select types: </label>
+                        <select name= "types" id="types" onChange={handleSelect} className={styles.selectTypes}>
                             {typesPoke.map(e => 
                                 (<option value={e.name}>{e.name}</option>)
                                 )}
                         </select>
-                        <div className={styles.selected}>
+                        
+                        <br/>
+                </div>
+                <div className={styles.selected}>
                             {formInput.types.map((t) => (
                                 <div className={styles.containerType}>
                                     <span className={styles.close} onClick={() => deleteSelectedType(t)}>X</span>
                                     {t}
                                 </div>
                             ))}
-                        </div>
-                        <br/>
-                   
-                    <button type="submit" name="submit" onClick={() => setOpenModal(true)}
-                        disabled = {Object.entries(errors).length === 0 ? false: true}>Create   
+                </div>
+
+                    <button type="submit" name="submit" className={styles.btn} onClick={() => setOpenModal(true)}
+                        disabled = {disable === false && Object.entries(errors).length === 0 ? false: true}>CREATE POKEMON   
                     </button>
             </form>
                     <Modal openModal = {openModal} onClose = {() => setOpenModal(false)}/>
+            </div>
         </div>
         </>
     )
