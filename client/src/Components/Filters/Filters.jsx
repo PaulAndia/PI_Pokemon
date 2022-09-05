@@ -100,14 +100,14 @@ export function Filters({fullPokemons}) {
             <div className={styles.filt}>
             <select  name="attack" id="Attack Filter" onChange={handleAttack} value={filtersState.filterAttack}>
                 <option value="0" disabled>--Filter by Attack--</option>
-                <option value="HIGH">HIGH TO LOW</option>
-                <option value="LOW">LOW TO HIGH</option>
+                <option value="HIGH">High to Low</option>
+                <option value="LOW">Low to High</option>
             </select>
             </div>
 
             <div className={styles.filt}>
             <select  name="created" id="Created Filter" onChange={handleCreated} value={filtersState.filterCreated}>
-                <option value="0" disabled>--Filter by Data Origin--</option>
+                <option value="0" disabled>--Data Origin--</option>
                 <option value="API">Pokemons from API</option>
                 <option value="POKEMONS CREATED">Show Pokemons created</option>
                 <option value="ALL">Show All</option>

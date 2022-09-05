@@ -1,11 +1,12 @@
 .filtContainer{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 220px);
+    display: flex;
+    /* grid-template-columns: repeat(auto-fill, 220px); */
     height: 45px;
     width: 100%;
     margin-top: 0px;
     background-color: rgb(189, 82, 82);
     justify-content: center;
+    column-gap: 20px;
     padding: 3px;
     border-radius: 2px;
     align-items:center;
@@ -13,7 +14,6 @@
 
 .filtContainer select{
     margin: 5px;
-    margin-left: 80px;
     border-radius: 10px;
     font-size: 14px;
     border-width: 1px;
@@ -22,7 +22,7 @@
     align-items: center;
     text-align: center;
     height: 30px;
-    width: 180px;
+    width: 140px;
 }
 /* 
 .search{

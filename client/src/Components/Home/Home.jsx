@@ -64,12 +64,12 @@ export function Home() {
                             <Link to={`/pokemons/${pok.id}`}>
                                 <h3><strong>{pok.name.toUpperCase()}</strong></h3>
                                     <img src={pok.image} alt={pok.name} 
-                                    width={200} height={180}
+                                    width={180} height={135}
                                     onError={e => {
                                         e.target.onerror = null;
                                         e.target.src = "https://media1.giphy.com/media/ehh35VzinMYyqxqANH/giphy.gif";    
                                     }}/>
-                                    <p><strong>Type:</strong> <br/>{pok.types.map(el => el[0].toUpperCase()+el.substring(1)).join(", ")}</p>
+                                    <p><strong>Type:</strong> {pok.types.map(el => el[0].toUpperCase()+el.substring(1)).join(", ")}</p>
                             </Link>
                         </li>
                     ))}

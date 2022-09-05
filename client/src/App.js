@@ -7,6 +7,7 @@ import {Types} from './Components/Types/Types'
 import {Form} from './Components/Form/Form'
 import {Details} from './Components/Details/Details'
 
+
 function App() {
   return (
     <div className="App">

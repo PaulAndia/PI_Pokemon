@@ -29,7 +29,7 @@ export function Details() {
                     <div key={p.id} className={styles.dex}>
                         <div className={styles.pic}>
                             <img src={p.image} alt={p.name} 
-                                width={165} height={190}
+                                width={165} height={170}
                                 onError={e => {
                                     e.target.onerror = null;
                                     e.target.src = "https://media1.giphy.com/media/ehh35VzinMYyqxqANH/giphy.gif";    

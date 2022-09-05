@@ -57,3 +57,7 @@
 .add:hover{
     color: black;
 }
+
+#round{
+    border-radius: 10px;
+}
