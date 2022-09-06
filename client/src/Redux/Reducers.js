@@ -96,7 +96,7 @@ const rootReducer = (state=initialState, action) =>{
             if(!filteredPokemons.length){
                 return {
                     ...state,
-                    error: "Pokemons not found for this type"
+                    error: "Error 404 - Pokemons not found for this type"
                 }
             }
             return {

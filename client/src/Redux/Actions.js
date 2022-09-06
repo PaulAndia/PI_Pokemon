@@ -17,13 +17,13 @@ export const CLEAR_FILTERS = "CLEAR_FILTERS";
 
 const msgErr = {
     type: MSG_ERROR,
-    payload: ["POKEMON NOT FOUND"]
+    payload: ["ERROR 404, POKEMON NOT FOUND"]
 }
 
-export const getAllPokemons = (name) => {
+export const getAllPokemons = () => {
     return async function(dispatch){
         try {
-            const response = await axios.get("http://localhost:3001/pokemons");
+            const response = await axios.get("/pokemons");
             const pokemons = response.data; // ---> [{}. {},...]
             return dispatch({
                 type: GET_ALL_POKEMONS,
@@ -38,7 +38,7 @@ export const getAllPokemons = (name) => {
 export const getPokemonDetails = (id) => {
     return async function(dispatch){
         try {
-            const response = await axios.get(`http://localhost:3001/pokemons/${id}`)
+            const response = await axios.get(`/pokemons/${id}`)
             const pokemon = response.data; // --> {}
             return dispatch({
                 type: GET_POKEMON_DETAILS,
@@ -61,7 +61,7 @@ export const getPokemonByName = (name) => {
     return async function(dispatch){
         try {
             if(name){
-                const responseName = await axios.get(`http://localhost:3001/pokemons?name=${name}`);
+                const responseName = await axios.get(`/pokemons?name=${name}`);
                 const pokemonFound = responseName.data; // --> [{}, {}]
                     return dispatch({
                         type: GET_POKEMON_NAME,
@@ -78,7 +78,7 @@ export const getPokemonByName = (name) => {
 export const getTypes = () => {
     return async function(dispatch){
         try {
-            const resTypes = await axios.get("http://localhost:3001/types");
+            const resTypes = await axios.get("/types");
             const types = resTypes.data;
             return dispatch({
                 type: GET_TYPES,
@@ -100,7 +100,7 @@ export const clearPokemons = () => {
 
 export const postPokemon = (formData) => {
     return async function(dispatch){
-        await axios.post('http://localhost:3001/pokemon', formData);
+        await axios.post('/pokemon', formData);
         return dispatch({type: POST_POKEMON})
     }
 }

@@ -2,35 +2,37 @@
     /* display: flex; */
     justify-content: center;
     align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
 }
 
 .searchbox{
-    /* position: relative; */
-    border-width: 1px;
+    align-items: center;
+    display: flex;
+    width: 200px;
+    height: 30px;
+    padding: 2px;
 }
 
-.input{
-    height: 27px;
-    /* padding: 5px 70px 5px 10px; */
-    border-radius: 5px;
-    width: 155px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: black;
+.searchbox input{
+    flex: 1;
+    width: 150px;
+    height: 25px;
+    border: none;
+    outline: none;
+    padding-left: 5px;
 }
 
 .button{
-    border-radius: 5px;
+    background-color: transparent;
+    font-size: 20px;    
+    color: rgb(0, 0, 0);
+    width: 30px;
+    height: 20px;
     cursor: pointer;
-    height: 31px;
-    border-width: 1px;
-    background: none;
-    background-color: rgb(110, 255, 255);
-    width: 55px;
-    justify-content: center;
-    align-items: center;
+    border-style: none;
 }
 
 .button:hover{
-    color: black;
+    color: rgb(6, 137, 149);
 }

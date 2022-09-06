@@ -1,14 +1,10 @@
-import { SearchBar } from '../SearchBar/SearchBar';
 import {Link} from 'react-router-dom';
 import styles from './NavBar.module.css'
 import logo from '../images/title.png'
-import React, { useState } from 'react';
+import pika from '../images/pika.gif'
 import Swal from 'sweetalert2';  
 
 export function NavBar({backHome}) {
-    const [show, setShow] = useState(false);
-    const handleShow = () => setShow(true);
-    const handleClose = () => setShow(false);
 
     function modal () {
         return  Swal.fire({
@@ -24,7 +20,6 @@ export function NavBar({backHome}) {
               '<i class="fa fa-thumbs-up"></i> Great!',
         })
     }
-       
     
 
     return (
@@ -35,6 +30,7 @@ export function NavBar({backHome}) {
                 <Link to="/">
                     <img src={logo} width="160px" height='60px' alt='logo'/>
                 </Link>
+            <img src={pika}  width="80px" height='60px' alt='pika'/>
             </div>
             
         <nav>
@@ -44,7 +40,7 @@ export function NavBar({backHome}) {
             </li>
 
             <li>
-                <Link to="/pokemons">
+                <Link to="/home">
                     <button onClick={backHome} className={styles.menu}>HOME</button>
                 </Link>
             </li>

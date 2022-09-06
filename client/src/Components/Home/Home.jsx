@@ -13,8 +13,6 @@ export function Home() {
     const dispatch = useDispatch();
     const fullPokemons = useSelector(state => state.allPokemons);
     const msgError = useSelector(state => state.error);
-    console.log(fullPokemons)
-    
    
         useEffect(() => {
             dispatch(getTypes())

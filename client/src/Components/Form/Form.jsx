@@ -260,7 +260,7 @@ export function Form() {
                         <label htmlFor = "types" >Select types: </label>
                         <select name= "types" id="types" onChange={handleSelect} className={styles.selectTypes}>
                             {typesPoke.map(e => 
-                                (<option value={e.name}>{e.name}</option>)
+                                (<option key={e.id} value={e.name}>{e.name}</option>)
                                 )}
                         </select>
                         

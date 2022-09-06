@@ -13,7 +13,7 @@ function App() {
     <div className="App">
       <Switch>
         <Route exact path = "/"><Landing/></Route>
-        <Route exact path = "/pokemons" ><Home/></Route>
+        <Route exact path = "/home" ><Home/></Route>
         <Route exact path = "/types" ><Types/></Route>
         <Route exact path = "/pokemon" ><Form/></Route>
         <Route exact path = "/pokemons/:id" ><Details/></Route>

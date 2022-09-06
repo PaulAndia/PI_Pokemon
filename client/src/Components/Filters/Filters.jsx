@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from 'react-redux';
 import React, {useState} from 'react';
-import {  filterAlphabetically, filterByTypes, filterCreate, filterByAttack, clearFilters, getAllPokemons, clearPokemons} from '../../Redux/Actions';
+import {  filterAlphabetically, filterByTypes, filterCreate, filterByAttack, getAllPokemons, clearPokemons} from '../../Redux/Actions';
 import styles from './Filters.module.css'
 import { SearchBar } from '../SearchBar/SearchBar';
 
@@ -82,7 +82,7 @@ export function Filters({fullPokemons}) {
             <select name="type" id="Type Filter" onChange={handleTypeFilter} value={filtersState.typesFilter}>
                 <option value="">--All types--</option>
                 {typesPok.map(e => 
-                    (<option value={e.name}>{e.name}</option>)
+                    (<option  key={e.id} value={e.name}>{e.name}</option>)
                     )}
             </select>
             </div>
