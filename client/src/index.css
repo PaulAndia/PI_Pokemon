@@ -12,7 +12,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
    background-image: url('./Components/images/fondo2.jpg');
    background-repeat: no-repeat; 
-  background-size: 100%; 
+  background-size: 100% 100%; 
+  
   
 }
 

@@ -22,7 +22,9 @@ export function Details() {
 
     return (
         <>
-        <NavBar/>
+        <div className={styles.nav}>
+            <NavBar/>
+        </div>
         <div className={styles.cont}>
             { pokemonDetail.length > 0 ?
                 (pokemonDetail.map(p => (
